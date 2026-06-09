@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GamerHeaven - Simulator Top Up 100% Gratis & Kocak</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons (Via CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0b0f19;
+        }
+        .cyber-border {
+            position: relative;
+        }
+        .cyber-border::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(to right, #3b82f6, #8b5cf6, #ec4899);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="text-gray-100 min-h-screen flex flex-col justify-between selection:bg-purple-600 selection:text-white">
+
+    <!-- Navbar -->
+    <header class="border-b border-gray-800 bg-gray-900/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-2 rounded-xl text-white shadow-lg shadow-purple-500/20 animate-pulse">
+                    <i class="fa-solid fa-gamepad text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-extrabold tracking-wider bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">GAMERHEAVEN</h1>
+                    <p class="text-[9px] text-pink-500 font-semibold tracking-widest uppercase">100% Gratis & Halu Simulator</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="bg-yellow-500/10 text-yellow-400 border border-yellow-500/20 px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1">
+                    <i class="fa-solid fa-coins text-amber-400 animate-bounce"></i> Saldo: Unlimited
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full">
+        
+        <!-- Hero Disclaimer -->
+        <div class="bg-gradient-to-r from-blue-900/30 to-purple-900/30 border border-purple-500/20 rounded-2xl p-6 mb-8 text-center relative overflow-hidden">
+            <div class="absolute -right-10 -top-10 w-40 h-40 bg-purple-500/10 rounded-full blur-2xl"></div>
+            <span class="bg-purple-500/20 text-purple-300 border border-purple-500/30 text-xs px-3 py-1 rounded-full font-bold uppercase tracking-wider mb-3 inline-block">FOR FUN ONLY / HANYA UNTUK SERU-SERUAN</span>
+            <h2 class="text-2xl md:text-3xl font-black text-white mb-2">🚀 Generator Top Up Game Paling Jujur Sedunia!</h2>
+            <p class="text-gray-400 text-sm max-w-2xl mx-auto">
+                Lelah dengan top-up yang menguras dompet? Di sini kamu bebas melakukan injeksi miliaran mata uang game impianmu secara gratis menggunakan metode pembayaran jalur gaib!
+            </p>
+        </div>
+
+        <!-- App Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- Left Side: Game Selection (4 Cols) -->
+            <div class="lg:col-span-4 space-y-6">
+                <div class="bg-gray-900/60 border border-gray-800 rounded-2xl p-5">
+                    <h3 class="text-lg font-bold mb-4 flex items-center gap-2 text-white">
+                        <span class="w-2 h-6 bg-blue-500 rounded-full"></span> 1. Pilih Game Favorit
+                    </h3>
+                    
+                    <div class="grid grid-cols-2 gap-3" id="game-list">
+                        <!-- MLBB -->
+                        <button onclick="selectGame('mlbb', 'Mobile Legends', 'Diamonds', 'mlbb.png')" id="btn-mlbb" class="game-card group relative p-3 rounded-xl border border-gray-800 bg-gray-950 text-left transition-all hover:border-blue-500 hover:shadow-lg hover:shadow-blue-500/10 focus:outline-none ring-2 ring-blue-500">
+                            <div class="text-3xl mb-2 text-blue-400 group-hover:scale-110 transition-transform">💎</div>
+                            <h4 class="font-bold text-sm text-gray-200">Mobile Legends</h4>
+                            <p class="text-[10px] text-gray-500 mt-0.5">Top up Diamonds</p>
+                        </button>
+
+                        <!-- Free Fire -->
+                        <button onclick="selectGame('ff', 'Free Fire', 'Diamonds', 'ff.png')" id="btn-ff" class="game-card group relative p-3 rounded-xl border border-gray-800 bg-gray-950 text-left transition-all hover:border-orange-500 hover:shadow-lg hover:shadow-orange-500/10 focus:outline-none">
+                            <div class="text-3xl mb-2 text-orange-400 group-hover:scale-110 transition-transform">🔥</div>
+                            <h4 class="font-bold text-sm text-gray-200">Free Fire</h4>
+                            <p class="text-[10px] text-gray-500 mt-0.5">Top up Diamonds</p>
+                        </button>
+
+                        <!-- PUBG Mobile -->
+                        <button onclick="selectGame('pubg', 'PUBG Mobile', 'UC', 'pubg.png')" id="btn-pubg" class="game-card group relative p-3 rounded-xl border border-gray-800 bg-gray-950 text-left transition-all hover:border-green-500 hover:shadow-lg hover:shadow-green-500/10 focus:outline-none">
+                            <div class="text-3xl mb-2 text-green-400 group-hover:scale-110 transition-transform">🔫</div>
+                            <h4 class="font-bold text-sm text-gray-200">PUBG Mobile</h4>
+                            <p class="text-[10px] text-gray-500 mt-0.5">Top up UC Cash</p>
+                        </button>
+
+                        <!-- Genshin Impact -->
+                        <button onclick="selectGame('genshin', 'Genshin Impact', 'Genesis Crystals', 'genshin.png')" id="btn-genshin" class="game-card group relative p-3 rounded-xl border border-gray-800 bg-gray-950 text-left transition-all hover:border-purple-500 hover:shadow-lg hover:shadow-purple-500/10 focus:outline-none">
+                            <div class="text-3xl mb-2 text-purple-400 group-hover:scale-110 transition-transform">✨</div>
+                            <h4 class="font-bold text-sm text-gray-200">Genshin Impact</h4>
+                            <p class="text-[10px] text-gray-500 mt-0.5">Genesis Crystals</p>
+                        </button>
+
+                        <!-- Valorant -->
+                        <button onclick="selectGame('valorant', 'Valorant', 'Valorant Points', 'valorant.png')" id="btn-valorant" class="game-card group relative p-3 rounded-xl border border-gray-800 bg-gray-950 text-left transition-all hover:border-red-500 hover:shadow-lg hover:shadow-red-500/10 focus:outline-none">
+                            <div class="text-3xl mb-2 text-red-500 group-hover:scale-110 transition-transform">🎯</div>
+                            <h4 class="font-bold text-sm text-gray-200">Valorant</h4>
+                            <p class="text-[10px] text-gray-500 mt-0.5">Valorant Points</p>
+                        </button>
+
+                        <!-- Roblox -->
+                        <button onclick="selectGame('roblox', 'Roblox', 'Robux', 'roblox.png')" id="btn-roblox" class="game-card group relative p-3 rounded-xl border border-gray-800 bg-gray-950 text-left transition-all hover:border-yellow-500 hover:shadow-lg hover:shadow-yellow-500/10 focus:outline-none">
+                            <div class="text-3xl mb-2 text-yellow-400 group-hover:scale-110 transition-transform">🪙</div>
+                            <h4 class="font-bold text-sm text-gray-200">Roblox</h4>
+                            <p class="text-[10px] text-gray-500 mt-0.5">Top up Robux</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Config Form (8 Cols) -->
+            <div class="lg:col-span-8 space-y-6">
+                <!-- Step 2 & 3 Combined Form Card -->
+                <div class="bg-gray-900/60 border border-gray-800 rounded-2xl p-6 space-y-8">
+                    
+                    <!-- ID Input -->
+                    <div>
+                        <h3 class="text-lg font-bold mb-4 flex items-center gap-2 text-white">
+                            <span class="w-2 h-6 bg-purple-500 rounded-full"></span> 2. Masukkan Informasi Akun
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">User ID (Isi Bebas)</label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+                                        <i class="fa-solid fa-user"></i>
+                                    </span>
+                                    <input type="text" id="user-id" placeholder="Contoh: 12345678" class="w-full pl-10 pr-4 py-3 bg-gray-950/80 border border-gray-800 rounded-xl focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors text-white placeholder-gray-600">
+                                </div>
+                            </div>
+                            <div id="zone-container">
+                                <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Zone ID / Server (Isi Bebas)</label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+                                        <i class="fa-solid fa-network-wired"></i>
+                                    </span>
+                                    <input type="text" id="zone-id" placeholder="Contoh: 1234 (Jika ada)" class="w-full pl-10 pr-4 py-3 bg-gray-950/80 border border-gray-800 rounded-xl focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors text-white placeholder-gray-600">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nominal Selection -->
+                    <div>
+                        <h3 class="text-lg font-bold mb-4 flex items-center gap-2 text-white">
+                            <span class="w-2 h-6 bg-pink-500 rounded-full"></span> 3. Pilih Jumlah <span id="nominal-title">Diamonds</span> Fantastis
+                        </h3>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3" id="nominal-grid">
+                            <!-- Generated Dynamically but start with MLBB values -->
+                        </div>
+                    </div>
+
+                    <!-- Payment Method Selection (The Funny Part) -->
+                    <div>
+                        <h3 class="text-lg font-bold mb-4 flex items-center gap-2 text-white">
+                            <span class="w-2 h-6 bg-emerald-500 rounded-full"></span> 4. Pilih Metode Pembayaran (100% Gratis & Kocak)
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            
+                            <button onclick="selectPayment('doa')" id="pay-doa" class="payment-card border border-purple-500/30 bg-purple-950/20 hover:bg-purple-950/30 rounded-xl p-4 text-left transition-all flex items-center gap-4 focus:outline-none ring-2 ring-purple-500">
+                                <span class="text-3xl">🙏</span>
+                                <div>
+                                    <h4 class="font-bold text-sm text-gray-100">Doa Ibu yang Tulus</h4>
+                                    <p class="text-[11px] text-purple-300">Biaya: Gratis & berkah dunia akhirat</p>
+                                </div>
+                            </button>
+
+                            <button onclick="selectPayment('senyum')" id="pay-senyum" class="payment-card border border-gray-800 bg-gray-950 hover:bg-gray-900 rounded-xl p-4 text-left transition-all flex items-center gap-4 focus:outline-none">
+                                <span class="text-3xl">😎</span>
+                                <div>
+                                    <h4 class="font-bold text-sm text-gray-100">Senyuman Manis Kamu</h4>
+                                    <p class="text-[11px] text-gray-400">Biaya: Cukup tersenyum ke layar HP</p>
+                                </div>
+                            </button>
+
+                            <button onclick="selectPayment('napas')" id="pay-napas" class="payment-card border border-gray-800 bg-gray-950 hover:bg-gray-900 rounded-xl p-4 text-left transition-all flex items-center gap-4 focus:outline-none">
+                                <span class="text-3xl">😮‍💨</span>
+                                <div>
+                                    <h4 class="font-bold text-sm text-gray-100">Tarik Napas & Tahan</h4>
+                                    <p class="text-[11px] text-gray-400">Biaya: Tahan napas selama 5 detik</p>
+                                </div>
+                            </button>
+
+                            <button onclick="selectPayment('janji')" id="pay-janji" class="payment-card border border-gray-800 bg-gray-950 hover:bg-gray-900 rounded-xl p-4 text-left transition-all flex items-center gap-4 focus:outline-none">
+                                <span class="text-3xl">🤝</span>
+                                <div>
+                                    <h4 class="font-bold text-sm text-gray-100">Janji Manis Gak Toxic</h4>
+                                    <p class="text-[11px] text-gray-400">Biaya: Berjanji ga bakal marah pas kalah</p>
+                                </div>
+                            </button>
+
+                        </div>
+                    </div>
+
+                    <!-- Action Button -->
+                    <div class="pt-2">
+                        <button onclick="startInfiltration()" class="w-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 py-4 rounded-xl font-extrabold text-white text-base tracking-wider uppercase transition-all transform active:scale-[0.98] shadow-lg shadow-purple-500/25 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-bolt-lightning text-yellow-300 animate-bounce"></i> Mulai Injeksi Top Up Gratis!
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Hack/Infiltration Console Overlay Modal -->
+    <div id="hack-modal" class="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-gray-950 border border-green-500/30 rounded-2xl w-full max-w-2xl overflow-hidden shadow-2xl shadow-green-500/5">
+            
+            <!-- Terminal Header -->
+            <div class="bg-gray-900 border-b border-gray-800 px-4 py-3 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                    <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+                    <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                    <span class="text-xs text-green-400 font-mono ml-2">SYSTEM@INJECTOR_TERMINAL:~</span>
+                </div>
+                <div class="text-green-500 text-xs font-mono animate-pulse">● EXECUTING</div>
+            </div>
+
+            <!-- Terminal Screen -->
+            <div class="p-6 font-mono text-sm text-green-400 h-96 overflow-y-auto space-y-2 bg-black flex flex-col justify-between" id="terminal-screen">
+                <div id="terminal-logs" class="space-y-1.5">
+                    <!-- Logs injection here dynamically -->
+                </div>
+                
+                <!-- Bottom Status -->
+                <div class="border-t border-green-500/20 pt-4 mt-4">
+                    <div class="flex justify-between items-center text-xs text-green-500/80 mb-1">
+                        <span>PERSENTASE INFILTRASI DATA SERVER</span>
+                        <span id="progress-percent">0%</span>
+                    </div>
+                    <div class="w-full bg-gray-900 rounded-full h-2.5 overflow-hidden border border-green-500/10">
+                        <div id="progress-bar" class="bg-gradient-to-r from-green-500 to-emerald-400 h-full w-0 transition-all duration-300"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-gray-900 border border-purple-500/30 rounded-3xl w-full max-w-lg p-8 text-center relative overflow-hidden shadow-2xl">
+            <!-- Decorative Glow -->
+            <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-64 h-64 bg-purple-600/20 rounded-full blur-3xl"></div>
+
+            <div class="relative z-10">
+                <div class="w-20 h-20 bg-green-500/10 border border-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6 text-green-400 text-4xl animate-bounce">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+
+                <h3 class="text-2xl font-extrabold text-white mb-2">🎉 Transaksi Sukses 100%!</h3>
+                <p class="text-gray-400 text-sm mb-6">
+                    Sistem kami telah sukses melakukan proses simulasi top up ke akun kamu. Diamond/UC kamu sedang "mengantri di jalur gaib" untuk mendarat!
+                </p>
+
+                <!-- Status Receipt Card -->
+                <div class="bg-gray-950/80 rounded-2xl p-4 text-left border border-gray-800 space-y-2 mb-6">
+                    <div class="flex justify-between text-xs">
+                        <span class="text-gray-500">Game Target</span>
+                        <span id="rec-game" class="font-bold text-white">-</span>
+                    </div>
+                    <div class="flex justify-between text-xs">
+                        <span class="text-gray-500">User ID (Zone ID)</span>
+                        <span id="rec-id" class="font-bold text-purple-400">-</span>
+                    </div>
+                    <div class="flex justify-between text-xs">
+                        <span class="text-gray-500">Nominal Paket</span>
+                        <span id="rec-amount" class="font-bold text-yellow-400">-</span>
+                    </div>
+                    <div class="flex justify-between text-xs">
+                        <span class="text-gray-500">Metode Pembayaran</span>
+                        <span id="rec-method" class="font-bold text-emerald-400">-</span>
+                    </div>
+                    <div class="border-t border-gray-800 my-2 pt-2 flex justify-between text-xs">
+                        <span class="text-gray-400 font-semibold">Total Biaya</span>
+                        <span class="font-extrabold text-green-400">Rp 0 (GRATIS LITERALLY)</span>
+                    </div>
+                </div>
+
+                <!-- Fun Warning Note -->
+                <p class="text-amber-400/80 text-[11px] bg-amber-400/5 border border-amber-400/10 rounded-lg p-3 mb-6 flex items-start gap-2 text-left">
+                    <i class="fa-solid fa-circle-exclamation mt-0.5 shrink-0"></i>
+                    <span><strong>Pemberitahuan Lucu:</strong> Web ini adalah simulator game prank! Diamond tidak akan beneran masuk ke akun aslimu, tapi kamu telah berhasil di-prank dengan bahagia. Bagikan ke temanmu biar mereka kena prank juga!</span>
+                </p>
+
+                <!-- Actions -->
+                <div class="grid grid-cols-2 gap-3">
+                    <button onclick="shareToWA()" class="bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-xl font-bold text-sm transition-colors flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Share ke Teman
+                    </button>
+                    <button onclick="resetSimulator()" class="bg-gray-800 hover:bg-gray-700 text-gray-200 py-3 rounded-xl font-bold text-sm transition-colors">
+                        Coba Lagi
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notice Container -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 space-y-2 pointer-events-none"></div>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-900 bg-gray-950 py-6 text-center mt-12">
+        <p class="text-xs text-gray-500">
+            &copy; 2026 <span class="text-purple-400 font-bold">GamerHeaven Simulator Inc.</span> Dibuat murni untuk menghibur, tertawa, dan seru-seruan bersama kawan. Tidak berafiliasi dengan penerbit game mana pun.
+        </p>
+    </footer>
+
+    <!-- Audio Effects using Web Audio API (Synthesized Beeps to avoid local file requirement) -->
+    <script>
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playBeep(freq = 440, duration = 0.1, type = "sine") {
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch(e){}
+        }
+    </script>
+
+    <!-- Logic Script -->
+    <script>
+        // State
+        let selectedGameId = 'mlbb';
+        let selectedGameName = 'Mobile Legends';
+        let currencyName = 'Diamonds';
+        let selectedNominal = '';
+        let selectedPaymentId = 'doa';
+        let selectedPaymentName = 'Doa Ibu yang Tulus';
+
+        // Pack values definitions
+        const nominals = {
+            mlbb: ['86 Diamonds', '257 Diamonds', '514 Diamonds', '1.200 Diamonds + BONUS', '99.999 Diamonds (SULTAN)', '999.999 Diamonds (ADMIN PANEL)'],
+            ff: ['140 Diamonds', '355 Diamonds', '720 Diamonds', '1.450 Diamonds', '100.000 Diamonds (FREETOFIRE)', '999.999 Diamonds (AKUN DEWA)'],
+            pubg: ['60 UC', '325 UC', '660 UC', '1.800 UC', '50.000 UC (MAX LEVEL)', '999.999 UC (CHICKEN DINNER)'],
+            genshin: ['60 Genesis Crystals', '300 Crystals', '980 Crystals', '1.980 Crystals', '30.000 Crystals (WANGY)', '999.999 Crystals (FULL CON)'],
+            valorant: ['475 VP', '1.000 VP', '2.050 VP', '5.300 VP', '25.000 VP (REAVER SKIN)', '999.999 VP (DEV MODE)'],
+            roblox: ['80 Robux', '400 Robux', '800 Robux', '1.700 Robux', '10.000 Robux (KAYA RAYA)', '999.999 Robux (OWNER MODE)']
+        };
+
+        // On Load initialization
+        window.addEventListener('DOMContentLoaded', () => {
+            selectGame('mlbb', 'Mobile Legends', 'Diamonds');
+            showNotification("🚀 Selamat datang di GamerHeaven Simulator Top Up Gratis!", "info");
+        });
+
+        // Toast notification system
+        function showNotification(message, type = "success") {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `transform translate-y-4 opacity-0 transition-all duration-300 pointer-events-auto flex items-center gap-2 p-4 rounded-xl text-xs font-bold border shadow-xl bg-gray-900 ${
+                type === 'success' ? 'border-green-500/30 text-green-400' :
+                type === 'error' ? 'border-red-500/30 text-red-400' :
+                'border-purple-500/30 text-purple-400'
+            }`;
+            
+            let icon = '<i class="fa-solid fa-circle-check"></i>';
+            if(type === 'error') icon = '<i class="fa-solid fa-circle-xmark"></i>';
+            if(type === 'info') icon = '<i class="fa-solid fa-circle-info"></i>';
+
+            toast.innerHTML = `${icon} <span>${message}</span>`;
+            container.appendChild(toast);
+
+            // Animate In
+            setTimeout(() => {
+                toast.classList.remove('translate-y-4', 'opacity-0');
+            }, 10);
+
+            // Auto Remove
+            setTimeout(() => {
+                toast.classList.add('translate-y-4', 'opacity-0');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 4000);
+        }
+
+        // Game Card Selection UI trigger
+        function selectGame(id, name, currency) {
+            playBeep(600, 0.08);
+            selectedGameId = id;
+            selectedGameName = name;
+            currencyName = currency;
+
+            // Remove previous ring styles from all game cards
+            document.querySelectorAll('.game-card').forEach(btn => {
+                btn.classList.remove('ring-2', 'ring-blue-500', 'ring-orange-500', 'ring-green-500', 'ring-purple-500', 'ring-red-500', 'ring-yellow-500');
+            });
+
+            // Assign proper colored borders matching the theme
+            const activeCard = document.getElementById(`btn-${id}`);
+            let ringColor = 'ring-blue-500';
+            if(id === 'ff') ringColor = 'ring-orange-500';
+            if(id === 'pubg') ringColor = 'ring-green-500';
+            if(id === 'genshin') ringColor = 'ring-purple-500';
+            if(id === 'valorant') ringColor = 'ring-red-500';
+            if(id === 'roblox') ringColor = 'ring-yellow-500';
+            
+            activeCard.classList.add('ring-2', ringColor);
+
+            // Update details title
+            document.getElementById('nominal-title').innerText = currency;
+
+            // Update zone view
+            const zoneContainer = document.getElementById('zone-container');
+            if(id === 'mlbb' || id === 'genshin') {
+                zoneContainer.style.display = 'block';
+            } else {
+                zoneContainer.style.display = 'none';
+            }
+
+            // Repopulate nominal cards
+            populateNominalList(id);
+        }
+
+        // Populate dynamic cards of currencies
+        function populateNominalList(gameId) {
+            const grid = document.getElementById('nominal-grid');
+            grid.innerHTML = ''; // clear
+
+            const items = nominals[gameId];
+            items.forEach((item, index) => {
+                const btn = document.createElement('button');
+                btn.onclick = () => selectNominal(item, index);
+                btn.id = `nominal-btn-${index}`;
+                btn.className = `nominal-card p-4 rounded-xl border border-gray-800 bg-gray-950 text-left transition-all hover:border-pink-500 hover:bg-gray-900/40 focus:outline-none flex flex-col justify-between ${index === 0 ? 'ring-2 ring-pink-500' : ''}`;
+                
+                // Content of button
+                btn.innerHTML = `
+                    <div class="text-xl font-black text-white">${item.split(' ')[0]}</div>
+                    <div class="text-[11px] text-pink-400 font-bold mt-1">${currencyName}</div>
+                    <div class="text-[10px] text-green-400 font-semibold mt-2 line-through text-gray-500">Rp ${((index+1)*25000).toLocaleString('id-ID')}</div>
+                    <div class="text-[11px] text-emerald-400 font-extrabold mt-0.5">Rp 0 (GRATIS)</div>
+                `;
+
+                grid.appendChild(btn);
+            });
+
+            // Set default nominal as first element
+            selectedNominal = items[0];
+        }
+
+        // Nominal Card selection
+        function selectNominal(value, index) {
+            playBeep(800, 0.08);
+            selectedNominal = value;
+            document.querySelectorAll('.nominal-card').forEach(btn => {
+                btn.classList.remove('ring-2', 'ring-pink-500');
+            });
+            document.getElementById(`nominal-btn-${index}`).classList.add('ring-2', 'ring-pink-500');
+        }
+
+        // Payment Method selection
+        function selectPayment(payId) {
+            playBeep(500, 0.1);
+            selectedPaymentId = payId;
+            
+            // Remove rings
+            document.querySelectorAll('.payment-card').forEach(btn => {
+                btn.classList.remove('ring-2', 'ring-purple-500', 'ring-emerald-500');
+                btn.classList.add('border-gray-800', 'bg-gray-950');
+                btn.classList.remove('border-purple-500/30', 'bg-purple-950/20');
+            });
+
+            const activeBtn = document.getElementById(`pay-${payId}`);
+            activeBtn.classList.add('ring-2', 'ring-purple-500', 'border-purple-500/30', 'bg-purple-950/20');
+            activeBtn.classList.remove('border-gray-800', 'bg-gray-950');
+
+            switch(payId) {
+                case 'doa': selectedPaymentName = 'Doa Ibu yang Tulus'; break;
+                case 'senyum': selectedPaymentName = 'Senyuman Manis Kamu'; break;
+                case 'napas': selectedPaymentName = 'Tarik Napas & Tahan'; break;
+                case 'janji': selectedPaymentName = 'Janji Manis Gak Toxic'; break;
+            }
+        }
+
+        // Start The "Hack/Infiltration" Prank Screen Process
+        function startInfiltration() {
+            const userIdValue = document.getElementById('user-id').value.trim();
+            if(!userIdValue) {
+                playBeep(150, 0.3, "sawtooth");
+                showNotification("Masukkan User ID terlebih dahulu sebelum melakukan injeksi!", "error");
+                document.getElementById('user-id').focus();
+                return;
+            }
+
+            playBeep(400, 0.2, "triangle");
+            
+            const hackModal = document.getElementById('hack-modal');
+            const terminalLogs = document.getElementById('terminal-logs');
+            const progressBar = document.getElementById('progress-bar');
+            const progressPercent = document.getElementById('progress-percent');
+            
+            hackModal.classList.remove('hidden');
+            terminalLogs.innerHTML = '';
+            progressBar.style.width = '0%';
+            progressPercent.innerText = '0%';
+
+            // Funny Logs queue script
+            const logs = [
+                { msg: "SYSTEM: Membuka socket koneksi bypass ke sistem gamerheaven...", delay: 200 },
+                { msg: `SYSTEM: Menargetkan server pusat game [${selectedGameName}]...`, delay: 600 },
+                { msg: `SYSTEM: Mencari metadata ID Akun: ${userIdValue}...`, delay: 1100 },
+                { msg: "SYSTEM: ID Akun ditemukan! Memverifikasi kecocokan avatar target...", delay: 1500 },
+                { msg: "WARNING: Firewall server mendeteksi aktivitas mencurigakan! Memasang tameng virtual...", delay: 1900 },
+                { msg: "SYSTEM: Tameng berhasil diaktifkan. Memulai enkripsi lalu lintas 256-bit...", delay: 2300 },
+                { msg: `SYSTEM: Menyuntikkan muatan paket gratis: ${selectedNominal}...`, delay: 2900 },
+                { msg: `PAYMENT: Memvalidasi pembayaran via [${selectedPaymentName}]...`, delay: 3500 },
+                { msg: "PAYMENT: Pembayaran tervalidasi sangat sah! Doa/Senyuman terdeteksi tulus.", delay: 3900 },
+                { msg: `SYSTEM: Sedang mentransfer data ${currencyName} ke database utama...`, delay: 4400 },
+                { msg: "SYSTEM: Melakukan sinkronisasi checksum data agar tidak ter-banned...", delay: 5000 },
+                { msg: "SUCCESS: Injeksi paket berhasil seutuhnya! Menghapus riwayat jejak digital...", delay: 5500 },
+                { msg: "SYSTEM: Koneksi ditutup dengan aman. Transaksi Selesai!", delay: 5900 }
+            ];
+
+            let index = 0;
+            const interval = setInterval(() => {
+                if(index < logs.length) {
+                    const logObj = logs[index];
+                    const p = document.createElement('p');
+                    p.className = logObj.msg.startsWith('WARNING') ? 'text-red-400 font-bold' : (logObj.msg.startsWith('SUCCESS') ? 'text-emerald-400 font-bold' : 'text-green-400');
+                    p.innerHTML = `<span class="text-green-600">[${new Date().toLocaleTimeString()}]</span> ${logObj.msg}`;
+                    terminalLogs.appendChild(p);
+                    
+                    // Auto scroll inside terminal
+                    const terminalScreen = document.getElementById('terminal-screen');
+                    terminalScreen.scrollTop = terminalScreen.scrollHeight;
+
+                    // Update Progress
+                    const progress = Math.min(Math.round(((index + 1) / logs.length) * 100), 100);
+                    progressBar.style.width = `${progress}%`;
+                    progressPercent.innerText = `${progress}%`;
+                    
+                    playBeep(800 + (index * 40), 0.05);
+
+                    index++;
+                } else {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        showSuccessScreen();
+                    }, 800);
+                }
+            }, 500);
+        }
+
+        // Show Success Result and Trigger Confetti
+        function showSuccessScreen() {
+            // Hide Injection Console
+            document.getElementById('hack-modal').classList.add('hidden');
+            
+            // Populate Receipt Card Details
+            const userIdVal = document.getElementById('user-id').value;
+            const zoneIdVal = document.getElementById('zone-id').value;
+            
+            document.getElementById('rec-game').innerText = selectedGameName;
+            document.getElementById('rec-id').innerText = `${userIdVal} ${zoneIdVal ? '(' + zoneIdVal + ')' : ''}`;
+            document.getElementById('rec-amount').innerText = `${selectedNominal} ${currencyName}`;
+            document.getElementById('rec-method').innerText = selectedPaymentName;
+
+            // Show final success modal
+            document.getElementById('success-modal').classList.remove('hidden');
+
+            // Trigger Fireworks / Confetti
+            playBeep(523, 0.15, "triangle");
+            setTimeout(() => playBeep(659, 0.15, "triangle"), 150);
+            setTimeout(() => playBeep(784, 0.3, "triangle"), 300);
+
+            let duration = 3 * 1000;
+            let end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 5,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 }
+                });
+                confetti({
+                    particleCount: 5,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 }
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+
+        // WhatsApp Share Generator
+        function shareToWA() {
+            playBeep(600, 0.08);
+            const userIdVal = document.getElementById('user-id').value;
+            const message = `Gokil cuy! Gw baru aja dapet ${selectedNominal} secara 100% GRATIS di game ${selectedGameName}! Pembayarannya cuma pake "${selectedPaymentName}" wkwk. Buruan cobain juga di GamerHeaven! 😂🔥`;
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://api.whatsapp.com/send?text=${encodedMessage}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Reset All state
+        function resetSimulator() {
+            playBeep(400, 0.1);
+            document.getElementById('success-modal').classList.add('hidden');
+            document.getElementById('user-id').value = '';
+            document.getElementById('zone-id').value = '';
+            showNotification("Simulator direset! Silakan coba paket/metode seru lainnya.", "info");
+        }
+    </script>
+</body>
+</html>
+
+```
